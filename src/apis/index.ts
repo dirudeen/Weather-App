@@ -1,17 +1,15 @@
 import axios from "axios";
 
- const axiosIstance = axios.create({
-  baseURL: "http://dataservice.accuweather.com/",
+ const forecastApi= axios.create({
+  baseURL: "https://api.open-meteo.com/v1/forecast?",
   timeout: 1000,
 });
 
-const apikey: string = import.meta.env.VITE_ACC_WEATHER_API_KEY
 
-if(!apikey) throw Error("api key is missing")
 
-export async function fetchCurrrentWeatherCondition(locationCode = 318251) {
-  const response = await axiosIstance.get(
-    `currentconditions/v1/${locationCode}?apikey=${apikey}`
+export async function fetchCurrrentWeatherCondition({lat, long}: {lat: string, long: string}) {
+  const response = await forecastApi.get(
+    `latitude=${lat}.73&longitude=${long}&current=temperature_2m,apparent_temperature,precipitation,wind_speed_10m,wind_direction_10m&timezone=auto`
   );
-  return response;
+  return response.data;
 }
