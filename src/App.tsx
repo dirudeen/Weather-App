@@ -1,24 +1,13 @@
-import { useEffect } from 'react'
-import './App.css'
-import { fetchCurrrentWeatherCondition } from './apis'
-
 function App() {
-
-useEffect(() => {
-  const getWeatherConditions = async () => {
-    const data = await fetchCurrrentWeatherCondition()
-    console.log(data)
-  }
-
-  getWeatherConditions()
-}, [])
-
-
   return (
-    <>
-      <h1>Home</h1>
-    </>
-  )
+    <main className="min-w-[312px] w-screen min-h-screen bg-slate-700">
+      <section>
+        {/* {HEADER} */}
+
+        {/* {MAIN SECTION THAT CONTAINERE ALL THE GRID ITEMS} */}
+      </section>
+    </main>
+  );
 }
 
-export default App
+export default App;
