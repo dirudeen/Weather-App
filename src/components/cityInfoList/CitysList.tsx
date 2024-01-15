@@ -3,15 +3,21 @@ import { CityInfoProps } from "../../types/cityTypes";
 
 export default function CitysList({
   searchResults,
+  showList,
+  onHideList
 }: {
+  onHideList: () => void
+  showList: string
   searchResults: CityInfoProps[] | undefined;
 }) {
   const [showResultList, setShowResultList] = useState(false);
   useEffect(() => {
-      if(searchResults && searchResults.length > 1){
+      if(showList.length > 1){
           setShowResultList(true)
+      } else {
+        setShowResultList(false)
       }
-  }, [searchResults])
+  }, [showList])
   
   if (!searchResults) return;
     
@@ -24,7 +30,7 @@ export default function CitysList({
               key={city.id}
               onClick={() => {
                 console.log(city);
-                setShowResultList(false);
+                onHideList()
               }}
             >
               <h3>{city.admin1}</h3>
