@@ -5,6 +5,11 @@ import axios from "axios";
   timeout: 1000,
 });
 
+const goeLocationApi = axios.create({
+  baseURL: "https://geocoding-api.open-meteo.com/v1/",
+  timeout: 1000,
+});
+
 
 
 export async function fetchCurrrentWeatherCondition({lat, long}: {lat: string, long: string}) {
