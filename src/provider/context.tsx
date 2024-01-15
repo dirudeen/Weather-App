@@ -6,13 +6,23 @@ interface City {
   city: CityInfoProps | null;
   onSetCity: (city: CityInfoProps) => void;
 }
+const initialState = {
+  city: {
+    id: 0,
+    name: "",
+    latitude: 0,
+    longitude: 0,
+    country_code: "",
+    timezone: "",
+    country: "",
+    admin1: "",
+  },
+  onSetCity: () => {},
+};
 
-type ContextProps = City | null;
-
-export const CityContext = createContext<ContextProps>(null);
+export const CityContext = createContext<City>(initialState);
 
 export function CityContextProvider({ children }: { children: ReactNode }) {
-  //   const { data } = useFetchCityQuery("istanbul");
   const [city, setCity] = useState<City["city"]>(null);
   useEffect(() => {
     const fetchCity = async () => {
