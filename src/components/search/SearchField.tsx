@@ -1,28 +1,10 @@
-import { useQuery } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { CiSearch } from "react-icons/ci";
-import { fetchCityInfo } from "../../apis";
-import useDebounce from "../../hooks/useDebounce";
-
-
+import useFetchCityQuery from "../../hooks/useFetchCityQuery";
 
 export default function SearchField() {
   const [city, setCity] = useState("");
-  const debounce = useDebounce(city)
-  const { data, refetch } = useQuery({
-    queryKey:["getCityInfo"],
-    queryFn: async () => await fetchCityInfo(debounce),
-    enabled: false
-  })
-
-  useEffect(() => {
-    const fetchData = async () => await refetch()
-
-    if(debounce.length > 2){
-      fetchData()
-      console.log(data)
-    }
-  }, [debounce, data, refetch])
+  const { data } = useFetchCityQuery(city);
 
   return (
     <>
