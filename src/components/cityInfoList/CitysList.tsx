@@ -9,7 +9,7 @@ export default function CitysList({
 }: {
   onHideList: () => void
   showList: string
-  searchResults: CityInfoProps[] | undefined;
+  searchResults: CityInfoProps[]
 }) {
   const [showResultList, setShowResultList] = useState(false);
   const context = useCityContext()
@@ -21,9 +21,7 @@ export default function CitysList({
         setShowResultList(false)
       }
   }, [showList])
-  
-  if (!searchResults) return;
-    
+      
   return (
     <ul className="absolute inset-0 z-10 bg-slate-600 w-100 h-fit translate-y-9 space-y-4">
       {showResultList &&
