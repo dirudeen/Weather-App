@@ -4,25 +4,21 @@ import Layout from "./components/layout/Layout";
 import useCityContext from "./hooks/useCityContext";
 import { fetchCurrrentWeatherCondition } from "./apis";
 
-
-
 function App() {
-  const context = useCityContext()
-  const city = context?.city
+  const { city } = useCityContext();
 
   useEffect(() => {
     const fetchData = async () => {
       const lat = city!.latitude;
-      const long= city!.longitude
-       const result = await fetchCurrrentWeatherCondition({lat, long})
-       console.log(result)
-      
+      const long = city!.longitude;
+      const result = await fetchCurrrentWeatherCondition({ lat, long });
+      console.log(result);
+    };
+    if (city) {
+      fetchData();
     }
-    if(city){
-      fetchData()
-    }
-  }, [city])
-  
+  }, [city]);
+
   return (
     <Layout>
       <section className="outline-dashed outline-red-400 w-[60rem] bg-slate-900 mx-auto">
