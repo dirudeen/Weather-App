@@ -12,7 +12,7 @@ export default function CitysList({
   searchResults: CityInfoProps[]
 }) {
   const [showResultList, setShowResultList] = useState(false);
-  const context = useCityContext()
+  const {onSetCity} = useCityContext()
 
   useEffect(() => {
       if(showList.length > 1){
@@ -21,7 +21,7 @@ export default function CitysList({
         setShowResultList(false)
       }
   }, [showList])
-      
+    
   return (
     <ul className="absolute inset-0 z-10 bg-slate-600 w-100 h-fit translate-y-9 space-y-4">
       {showResultList &&
@@ -31,7 +31,7 @@ export default function CitysList({
               key={city.id}
               onClick={() => {
                 onHideList()
-                context?.onSetCity(city)
+                onSetCity(city)
               }}
             >
               <h3>{city.admin1}</h3>
