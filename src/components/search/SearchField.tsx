@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import useFetchCityQuery from "../../hooks/useFetchCityQuery";
+import CitysList from "../cityInfoList/CitysList";
 
 export default function SearchField() {
   const [city, setCity] = useState("");
   const { data, isCityLoading, error, isError } = useFetchCityQuery(city);
 
   return (
-    <>
-      <div className="flex focus-within:border-slate-400 items-center gap-1 rounded-lg border-slate-600 border text-white px-4 py-0.5 max-w-[24rem] w-full">
+      <div className="flex relative focus-within:border-slate-400 items-center gap-1 rounded-lg border-slate-600 border text-white px-4 py-0.5 max-w-[24rem] w-full">
         <CiSearch className="text-2xl text-white font-semibold" />
         <form className="flex-1">
           <input
@@ -19,7 +19,8 @@ export default function SearchField() {
             placeholder="search for city"
           />
         </form>
+
+        <CitysList searchResults={data} />
       </div>
-    </>
   );
 }
