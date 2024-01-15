@@ -16,9 +16,8 @@ export default function useFetchCityQuery(city: string) {
 
        if (debounce.length > 2) {
          fetchData();
-         console.log(data);
        }
-     }, [debounce, data, refetch]);
+     }, [debounce, refetch]);
   return {
     data,
     isError,
