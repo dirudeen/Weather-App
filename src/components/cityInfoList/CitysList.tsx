@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { CityInfoProps } from "../../types/cityTypes";
+import useCityContext from "../../hooks/useCityContext";
 
 export default function CitysList({
   searchResults,
@@ -11,6 +12,8 @@ export default function CitysList({
   searchResults: CityInfoProps[] | undefined;
 }) {
   const [showResultList, setShowResultList] = useState(false);
+  const context = useCityContext()
+
   useEffect(() => {
       if(showList.length > 1){
           setShowResultList(true)
@@ -29,8 +32,8 @@ export default function CitysList({
             <li
               key={city.id}
               onClick={() => {
-                console.log(city);
                 onHideList()
+                context?.onSetCity(city)
               }}
             >
               <h3>{city.admin1}</h3>
