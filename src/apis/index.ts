@@ -13,9 +13,9 @@ const goeLocationApi = axios.create({
 
 
 
-export async function fetchCurrrentWeatherCondition({lat, long}: {lat: string, long: string}) {
+export async function fetchCurrrentWeatherCondition({lat, long}: {lat: number, long: number}) {
   const response = await forecastApi.get(
-    `forecast?latitude=${lat}.73&longitude=${long}&current=temperature_2m,apparent_temperature,precipitation,wind_speed_10m,wind_direction_10m&timezone=auto`
+    `forecast?latitude=${lat.toFixed(2)}&longitude=${long.toFixed(2)}&current=temperature_2m,apparent_temperature,precipitation,wind_speed_10m,wind_direction_10m&timezone=auto`
   );
   return response.data;
 }
@@ -28,5 +28,5 @@ export async function fetchCityInfo(cityName: string = "kayseri") {
   const response = await goeLocationApi.get<ResponseType>(
     `search?name=${cityName}&count=10&language=en&format=json`
   );
-  return response.data.results;
+  return response.data.results
 }
