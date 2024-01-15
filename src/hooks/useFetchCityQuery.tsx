@@ -6,7 +6,7 @@ import { useEffect } from "react";
 export default function useFetchCityQuery(city: string) {
   const debounce = useDebounce(city);
   const {
-    data,
+    data: result,
     error,
     isError,
     isLoading: isCityLoading,
@@ -16,6 +16,9 @@ export default function useFetchCityQuery(city: string) {
     queryFn: async () => await fetchCityInfo(debounce),
     enabled: false,
   });
+
+ // asserts data to be a non nullish type
+  const data = result ?? []
 
   useEffect(() => {
     const fetchData = async () => await refetch();
