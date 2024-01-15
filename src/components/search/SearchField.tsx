@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import { fetchCityInfo } from "../../apis";
 
@@ -12,6 +12,14 @@ export default function SearchField() {
     queryFn: async () => await fetchCityInfo(city),
     enabled: false
   })
+
+  useEffect(() => {
+    const fetchData = async () => await refetch()
+
+    if(city.length > 2){
+      fetchData()
+    }
+  }, [city, refetch])
 
   return (
     <>
