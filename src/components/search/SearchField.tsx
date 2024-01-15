@@ -5,7 +5,7 @@ import CitysList from "../cityInfoList/CitysList";
 
 export default function SearchField() {
   const [city, setCity] = useState("");
-  const { data, isCityLoading, error, isError } = useFetchCityQuery(city);
+  const { data } = useFetchCityQuery(city);
 
   return (
       <div className="flex relative focus-within:border-slate-400 items-center gap-1 rounded-lg border-slate-600 border text-white px-4 py-0.5 max-w-[24rem] w-full">
