@@ -20,7 +20,7 @@ export default function SearchField() {
           />
         </form>
 
-        <CitysList searchResults={data} />
+        <CitysList searchResults={data}  showList={city} onHideList={() => setCity("")}/>
       </div>
   );
 }
