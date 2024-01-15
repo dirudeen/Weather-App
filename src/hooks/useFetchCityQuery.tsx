@@ -4,24 +4,30 @@ import { fetchCityInfo } from "../apis";
 import { useEffect } from "react";
 
 export default function useFetchCityQuery(city: string) {
-     const debounce = useDebounce(city);
-     const { data, error, isError, isLoading: isCityLoading, refetch } = useQuery({
-       queryKey: ["getCityInfo"],
-       queryFn: async () => await fetchCityInfo(debounce),
-       enabled: false,
-     });
+  const debounce = useDebounce(city);
+  const {
+    data,
+    error,
+    isError,
+    isLoading: isCityLoading,
+    refetch,
+  } = useQuery({
+    queryKey: ["getCityInfo"],
+    queryFn: async () => await fetchCityInfo(debounce),
+    enabled: false,
+  });
 
-     useEffect(() => {
-       const fetchData = async () => await refetch();
+  useEffect(() => {
+    const fetchData = async () => await refetch();
 
-       if (debounce.length > 2) {
-         fetchData();
-       }
-     }, [debounce, refetch]);
+    if (debounce.length > 2) {
+      fetchData();
+    }
+  }, [debounce, refetch]);
   return {
     data,
     isError,
     isCityLoading,
     error,
-  }
+  };
 }
